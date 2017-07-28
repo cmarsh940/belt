@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Belt</title>
+	{% load staticfiles %}
+    <link rel="stylesheet" href="{% static '/belt/css/style.css' %}" />
+</head>
+<body>
+	<h3>Welcome, {{ user.name }}! </h3>
+	<p id='logout'><a href="/logout">Logout</a></p>
+	{% if friends%}
+		<h3>Here is a list of your fiends</h3>
+		<table>
+			<thead>
+				<th>Alias</th>
+				<th>Action</th>
+			</thead>
+			<tbody>
+				{% for friend in friends %}
+				<tr>
+					<td>{{ friend.alias }}</td>
+					<td>
+						<a href="{% url 'user' id=friend.id %}">Show Profile</a>
+						<form action="{% url 'remove-friend' id=friend.id %}" method="post">
+							{% csrf_token %}
+							<input type="submit" value="Remove friend!" />
+						</form>
+					</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% else %}
+		<h3>You dont Have any fiends yet</h3>
+	{% endif %}
+	<h3>Other user's not on your friedns list</h3>
+	<table>
+		<thead>
+			<th>Alias</th>
+			<th>Action</th>
+		</thead>
+		<tbody>
+			{% for user in users %}
+			<tr>
+				<td><a href="{% url 'user' id=user.id %}">{{ user.alias }}</a></td>
+				<td>
+					<form action="{% url 'add-friend' id=user.id %}" method="post">
+						{% csrf_token %}
+						<input type="submit" value="Add as friend!" />
+					</form>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>

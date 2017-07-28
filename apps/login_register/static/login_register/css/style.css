@@ -1,0 +1,20 @@
+/* css reset  */
+* {
+	padding: 0px;
+	margin: 10px;
+}
+
+form {
+	width: 200px;
+    display: inline-grid;
+}
+
+a {
+	text-decoration: none;
+	color: blue;
+}
+
+#login, #register {
+	display: inline-block;
+    vertical-align: top;
+}

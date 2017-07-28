@@ -1,0 +1,55 @@
+<html>
+<head>
+    <title></title>
+    {% load staticfiles %}
+    <!-- The line above tells Django to be ready to listen for static files -->
+    <link rel="stylesheet" href="{% static '/login_register/css/style.css' %}" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+    <!-- Errors -->
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <!-- End Errors -->
+    <div id="register">
+        <h1>Register</h1>
+        <form action="{% url 'register' %}" method="post">
+            {% csrf_token %}
+            <label>Name:</label>
+            <input type="text" name="name" placeholder="Name" />
+
+            <label>Alias:</label>
+            <input type="text" name="alias" placeholder="Alias" />
+
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="Email" />
+
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Password" />
+
+            <label>Password Confirmation:</label>
+            <input type="password" name="confirm_password" placeholder="Password" />
+
+            <label>Date of Birth:</label>
+            <input type="date" name="birthday" placeholder="YYYY-MM-DD" />
+
+            <input type="submit" value="Register" />
+        </form>
+    </div>
+    <div id="login">
+        <h1>Login</h1>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            <label>Email:</label>
+            <input type="email" name="email" placeholder="Email" />
+
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Password" />
+
+            <input type="submit" value="Login" />
+        </form>
+    </div>
+</body>
+</html>

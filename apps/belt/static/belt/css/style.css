@@ -1,0 +1,21 @@
+/* css reset  */
+* {
+	padding: 0px;
+	margin: 10px;
+}
+
+table, td, th {    
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 500px;
+}
+
+a, form {
+	display: inline-block
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
